@@ -4,18 +4,31 @@ import EStyleSheet from "react-native-extended-stylesheet";
 const screen = Dimensions.get("window");
 
 const style = EStyleSheet.create({
-  button: {
+  buttonStart: {
     borderWidth: 10,
     width: screen.width / 2,
     height: screen.width / 2,
     borderRadius: screen.width / 2,
-    borderColor: "$startButton",
+    borderColor: "$orange",
     justifyContent: "center", // vertical
     alignItems: "center" // horizontal
   },
-  text: {
+  buttonStop: {
+    borderWidth: 10,
+    width: screen.width / 2,
+    height: screen.width / 2,
+    borderRadius: screen.width / 2,
+    borderColor: "$red",
+    justifyContent: "center", // vertical
+    alignItems: "center" // horizontal
+  },
+  textStart: {
     fontSize: 45,
-    color: "$startText"
+    color: "$white"
+  },
+  textStop: {
+    fontSize: 45,
+    color: "$white"
   }
 });
 
