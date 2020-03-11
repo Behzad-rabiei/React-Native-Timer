@@ -1,15 +1,15 @@
-import { CHANGE_START_BUTTON } from "../actions/actionsType";
+import { CHANGE_BUTTON_STATUS } from "../actions/actionsType";
 
 const initalState = {
-  startButtonStatus: true
+  buttonStatus: "ON"
 };
 
 const rootReducer = (state = initalState, actions) => {
   switch (actions.type) {
-    case CHANGE_START_BUTTON: {
+    case CHANGE_BUTTON_STATUS: {
       return {
         ...state,
-        startButtonStatus: actions.value
+        buttonStatus: actions.value
       };
     }
     default:

@@ -5,29 +5,29 @@ import PropTypes from "prop-types";
 import styles from "./styles";
 import { changeStartButton } from "../../actions/index";
 
-class StartButton extends Component {
+class Button extends Component {
   // eslint-disable-next-line react/static-property-placement
   static propTypes = {
     // eslint-disable-next-line react/require-default-props
     dispatch: PropTypes.func,
     // eslint-disable-next-line react/require-default-props
-    startButtonStatus: PropTypes.bool
+    buttonStatus: PropTypes.string
   };
 
   handlePress = () => {
-    const { dispatch, startButtonStatus } = this.props;
-    if (startButtonStatus === true) {
-      dispatch(changeStartButton(false));
-    } else if (startButtonStatus === false) {
-      dispatch(changeStartButton(true));
+    const { dispatch, buttonStatus } = this.props;
+    if (buttonStatus === "ON") {
+      dispatch(changeStartButton("OFF"));
+    } else if (buttonStatus === "OFF") {
+      dispatch(changeStartButton("ON"));
     }
   };
 
   render() {
-    const { startButtonStatus } = this.props;
+    const { buttonStatus } = this.props;
     return (
       <View>
-        {startButtonStatus ? (
+        {buttonStatus === "ON" ? (
           <TouchableOpacity
             style={styles.buttonStart}
             onPress={this.handlePress}
@@ -48,9 +48,9 @@ class StartButton extends Component {
 }
 
 const mapStateToProps = state => {
-  const { startButtonStatus } = state;
+  const { buttonStatus } = state;
   return {
-    startButtonStatus
+    buttonStatus
   };
 };
-export default connect(mapStateToProps)(StartButton);
+export default connect(mapStateToProps)(Button);

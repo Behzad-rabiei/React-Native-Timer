@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Text } from "react-native";
 import styles from "./styles";
 
-class TimeText extends Component {
+class Time extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,12 +22,11 @@ class TimeText extends Component {
   formatNumber = number => `0${number}`.slice(-2);
 
   render() {
-    const { secondes, minutes } = this.getRemaining(
-      this.state.remainingSeconds
-    );
+    const { remainingSeconds } = this.state;
+    const { secondes, minutes } = this.getRemaining(remainingSeconds);
     const time = `${minutes}:${secondes}`;
     return <Text style={styles.text}>{time}</Text>;
   }
 }
 
-export default TimeText;
+export default Time;
