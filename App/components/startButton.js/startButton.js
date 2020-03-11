@@ -1,33 +1,33 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { TouchableOpacity, Text, View } from "react-native";
+import PropTypes from "prop-types";
 import styles from "./styles";
+import { changeStartButton } from "../../actions/index";
 
 class StartButton extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      flag: true
-    };
-  }
+  // eslint-disable-next-line react/static-property-placement
+  static propTypes = {
+    // eslint-disable-next-line react/require-default-props
+    dispatch: PropTypes.func,
+    // eslint-disable-next-line react/require-default-props
+    startButtonStatus: PropTypes.bool
+  };
 
   handlePress = () => {
-    if (this.state.flag === true) {
-      this.setState({
-        flag: false
-      });
-    } else if (this.state.flag === false) {
-      this.setState({
-        flag: true
-      });
+    const { dispatch, startButtonStatus } = this.props;
+    if (startButtonStatus === true) {
+      dispatch(changeStartButton(false));
+    } else if (startButtonStatus === false) {
+      dispatch(changeStartButton(true));
     }
   };
 
   render() {
-    const { flag } = this.state;
-
+    const { startButtonStatus } = this.props;
     return (
       <View>
-        {flag ? (
+        {startButtonStatus ? (
           <TouchableOpacity
             style={styles.buttonStart}
             onPress={this.handlePress}
@@ -46,4 +46,11 @@ class StartButton extends Component {
     );
   }
 }
-export default StartButton;
+
+const mapStateToProps = state => {
+  const { startButtonStatus } = state;
+  return {
+    startButtonStatus
+  };
+};
+export default connect(mapStateToProps)(StartButton);
