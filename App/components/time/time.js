@@ -1,32 +1,63 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Text } from "react-native";
+import { minusSeconds, changeStartButton } from "../../actions/index";
 import styles from "./styles";
 
+const formatNumber = number => `0${number}`.slice(-2);
+const getRemaining = time => {
+  const minutes = Math.floor(time / 60);
+  const secondes = time - minutes * 60;
+  return {
+    minutes: formatNumber(minutes),
+    secondes: formatNumber(secondes)
+  };
+};
 class Time extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      remainingSeconds: 5
-    };
+  interval = null;
+
+  componentDidUpdate(prevProp) {
+    const { buttonStatus, dispatch, remainingSeconds } = this.props;
+    if (remainingSeconds === 0 && buttonStatus === "stop") {
+      clearInterval(this.interval);
+      this.interval = null;
+      dispatch(changeStartButton("start"));
+    } else if (buttonStatus === "stop" && prevProp.buttonStatus === "start") {
+      dispatch(minusSeconds());
+      this.interval = setInterval(() => {
+        this.start();
+      }, 1000);
+    } else if (buttonStatus === "start" && prevProp.buttonStatus === "stop") {
+      clearInterval(this.interval);
+      this.interval = null;
+    }
   }
 
-  getRemaining = time => {
-    const minutes = Math.floor(time / 60);
-    const secondes = time - minutes * 60;
-    return {
-      minutes: this.formatNumber(minutes),
-      secondes: this.formatNumber(secondes)
-    };
+  componentWillUnmount() {
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
+  }
+
+  start = () => {
+    const { dispatch } = this.props;
+    console.log("minus");
+    dispatch(minusSeconds());
   };
 
-  formatNumber = number => `0${number}`.slice(-2);
-
   render() {
-    const { remainingSeconds } = this.state;
-    const { secondes, minutes } = this.getRemaining(remainingSeconds);
+    const { remainingSeconds } = this.props;
+    const { secondes, minutes } = getRemaining(remainingSeconds);
     const time = `${minutes}:${secondes}`;
     return <Text style={styles.text}>{time}</Text>;
   }
 }
 
-export default Time;
+const mapStateToProps = state => {
+  const { buttonStatus, remainingSeconds } = state;
+  return {
+    buttonStatus,
+    remainingSeconds
+  };
+};
+export default connect(mapStateToProps)(Time);

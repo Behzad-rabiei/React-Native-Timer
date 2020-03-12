@@ -1,7 +1,8 @@
-import { CHANGE_BUTTON_STATUS } from "../actions/actionsType";
+import { CHANGE_BUTTON_STATUS, MINUS_SECONDS } from "../actions/actionsType";
 
 const initalState = {
-  buttonStatus: "start"
+  buttonStatus: "start",
+  remainingSeconds: 20
 };
 
 const rootReducer = (state = initalState, actions) => {
@@ -10,6 +11,12 @@ const rootReducer = (state = initalState, actions) => {
       return {
         ...state,
         buttonStatus: actions.value
+      };
+    }
+    case MINUS_SECONDS: {
+      return {
+        ...state,
+        remainingSeconds: state.remainingSeconds - 1
       };
     }
     default:
