@@ -1,7 +1,7 @@
 import { CHANGE_BUTTON_STATUS } from "../actions/actionsType";
 
 const initalState = {
-  buttonStatus: "ON"
+  buttonStatus: "start"
 };
 
 const rootReducer = (state = initalState, actions) => {

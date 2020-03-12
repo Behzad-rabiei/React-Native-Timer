@@ -16,10 +16,10 @@ class Button extends Component {
 
   handlePress = () => {
     const { dispatch, buttonStatus } = this.props;
-    if (buttonStatus === "ON") {
-      dispatch(changeStartButton("OFF"));
-    } else if (buttonStatus === "OFF") {
-      dispatch(changeStartButton("ON"));
+    if (buttonStatus === "start") {
+      dispatch(changeStartButton("stop"));
+    } else if (buttonStatus === "stop") {
+      dispatch(changeStartButton("start"));
     }
   };
 
@@ -27,7 +27,7 @@ class Button extends Component {
     const { buttonStatus } = this.props;
     return (
       <View>
-        {buttonStatus === "ON" ? (
+        {buttonStatus === "start" ? (
           <TouchableOpacity
             style={styles.buttonStart}
             onPress={this.handlePress}
