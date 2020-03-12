@@ -36,7 +36,7 @@ class Button extends Component {
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
-            style={styles.buttonStop}
+            style={[styles.buttonStart, styles.buttonStop]}
             onPress={this.handlePress}
           >
             <Text style={styles.textStop}>Stop</Text>

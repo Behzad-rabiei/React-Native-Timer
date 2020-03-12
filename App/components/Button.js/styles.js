@@ -14,13 +14,7 @@ const style = EStyleSheet.create({
     alignItems: "center" // horizontal
   },
   buttonStop: {
-    borderWidth: 10,
-    width: screen.width / 2,
-    height: screen.width / 2,
-    borderRadius: screen.width / 2,
-    borderColor: "$red",
-    justifyContent: "center", // vertical
-    alignItems: "center" // horizontal
+    borderColor: "$red"
   },
   textStart: {
     fontSize: 45,
