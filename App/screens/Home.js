@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { StatusBar } from "react-native";
 import { Container } from "../components/Container";
+import { PickerTime } from "../components/PickerTime";
 import { Button } from "../components/Button";
 import { Time } from "../components/Time";
 
@@ -9,6 +10,7 @@ class Home extends Component {
     return (
       <Container>
         <StatusBar barStyle="light-content" />
+        <PickerTime />
         <Time />
         <Button />
       </Container>
