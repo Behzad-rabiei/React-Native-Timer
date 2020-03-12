@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Text } from "react-native";
-import { minusSeconds, changeStartButton } from "../../actions/index";
+import {
+  minusSeconds,
+  changeStartButton,
+  setRemainingSeconds
+} from "../../actions/index";
 import styles from "./styles";
 
 const formatNumber = number => `0${number}`.slice(-2);
@@ -22,6 +26,7 @@ class Time extends Component {
       clearInterval(this.interval);
       this.interval = null;
       dispatch(changeStartButton("start"));
+      dispatch(setRemainingSeconds(20));
     } else if (buttonStatus === "stop" && prevProp.buttonStatus === "start") {
       dispatch(minusSeconds());
       this.interval = setInterval(() => {
