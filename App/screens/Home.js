@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { StatusBar } from "react-native";
-import { Container } from "../components/container";
-import { Button } from "../components/Button.js";
-import { Time } from "../components/time";
+import { Container } from "../components/Container";
+import { Button } from "../components/Button";
+import { Time } from "../components/Time";
 
 class Home extends Component {
   render() {

@@ -20,6 +20,7 @@ const getRemaining = time => {
 class Time extends Component {
   interval = null;
 
+  //  I try another ways for doing minusSeconds and at the I do this way but I think there is a better way for doing that
   componentDidUpdate(prevProp) {
     const { buttonStatus, dispatch, remainingSeconds } = this.props;
     if (remainingSeconds === 0 && buttonStatus === "stop") {
@@ -28,7 +29,6 @@ class Time extends Component {
       dispatch(changeStartButton("start"));
       dispatch(setRemainingSeconds(20));
     } else if (buttonStatus === "stop" && prevProp.buttonStatus === "start") {
-      dispatch(minusSeconds());
       this.interval = setInterval(() => {
         this.start();
       }, 1000);
