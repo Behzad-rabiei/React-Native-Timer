@@ -4,14 +4,11 @@ import { View, Picker } from "react-native";
 
 class PickerTime extends Component {
   render() {
-    return (
-      <View>
-        <Picker />
-        <Picker />
-      </View>
-    );
+    return null;
   }
 }
 
-const mapStateToProps = state => {};
+const mapStateToProps = state => {
+  return {};
+};
 export default connect(mapStateToProps)(PickerTime);
