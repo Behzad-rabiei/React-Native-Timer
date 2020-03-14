@@ -7,16 +7,8 @@ import {
   setRemainingSeconds
 } from "../../actions/index";
 import styles from "./styles";
+import { getRemaining } from "./func";
 
-const formatNumber = number => `0${number}`.slice(-2);
-const getRemaining = time => {
-  const minutes = Math.floor(time / 60);
-  const secondes = time - minutes * 60;
-  return {
-    minutes: formatNumber(minutes),
-    secondes: formatNumber(secondes)
-  };
-};
 class Time extends Component {
   interval = null;
 
@@ -31,7 +23,7 @@ class Time extends Component {
     } else if (buttonStatus === "stop" && prevProp.buttonStatus === "start") {
       this.interval = setInterval(() => {
         this.start();
-      }, 1000);
+      }, 985);
     } else if (buttonStatus === "start" && prevProp.buttonStatus === "stop") {
       clearInterval(this.interval);
       this.interval = null;
