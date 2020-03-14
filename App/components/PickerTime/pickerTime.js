@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { View, Picker } from "react-native";
 
 class PickerTime extends Component {
@@ -12,4 +13,5 @@ class PickerTime extends Component {
   }
 }
 
-export default PickerTime;
+const mapStateToProps = state => {};
+export default connect(mapStateToProps)(PickerTime);
