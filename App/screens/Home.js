@@ -10,7 +10,6 @@ class Home extends Component {
     return (
       <Container>
         <StatusBar barStyle="light-content" />
-        <PickerTime />
         <Time />
         <Button />
       </Container>

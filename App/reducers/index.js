@@ -6,7 +6,7 @@ import {
 
 const initalState = {
   buttonStatus: "start",
-  remainingSeconds: 20
+  remainingSeconds: 1200
 };
 
 const rootReducer = (state = initalState, actions) => {
