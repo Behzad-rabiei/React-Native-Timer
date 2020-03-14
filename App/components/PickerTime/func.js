@@ -1,8 +1,8 @@
 const createArray = length => {
   const arr = [];
   for (let i = 0; i < length; i += 1) {
-    arr.push(i);
+    arr.push(i.toString());
   }
+  return arr;
 };
-export const AVAILABLE_SECONDS = createArray(60);
-export const AVAILABLE_MINUTES = createArray(10);
+export const AVAILABLE_ITEMS = createArray(60);

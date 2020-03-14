@@ -13,7 +13,7 @@ class Home extends Component {
     return (
       <Container>
         <StatusBar barStyle="light-content" />
-        {buttonStatus === "start" ? <Time /> : <PickerTime />}
+        {buttonStatus === "start" ? <PickerTime /> : <Time />}
         <Button />
       </Container>
     );
