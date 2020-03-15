@@ -1,5 +1,6 @@
 import {
   CHANGE_START_BUTTON_STATUS,
+  CHANGE_PAUSE_BUTTON_STATUS,
   MINUS_SECONDS,
   GET_MINUTES,
   GET_SECONDS,
@@ -10,6 +11,13 @@ export const changeStartButtonStatus = status => {
   return {
     type: CHANGE_START_BUTTON_STATUS,
     value: status
+  };
+};
+
+export const changePauseButtonStatus = state => {
+  return {
+    type: CHANGE_PAUSE_BUTTON_STATUS,
+    value: state
   };
 };
 
