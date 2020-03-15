@@ -1,7 +1,8 @@
 import {
   CHANGE_BUTTON_STATUS,
   MINUS_SECONDS,
-  SET_REMAINING_SECONDS
+  GET_MINUTES,
+  GET_SECONDS
 } from "./actionsType";
 
 export const changeStartButton = status => {
@@ -17,9 +18,15 @@ export const minusSeconds = () => {
   };
 };
 
-export const setRemainingSeconds = seconds => {
+export const getMinutes = minutes => {
   return {
-    type: SET_REMAINING_SECONDS,
+    type: GET_MINUTES,
+    value: minutes
+  };
+};
+export const getSeconds = seconds => {
+  return {
+    type: GET_SECONDS,
     value: seconds
   };
 };

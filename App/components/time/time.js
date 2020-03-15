@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Text } from "react-native";
-import {
-  minusSeconds,
-  changeStartButton,
-  setRemainingSeconds
-} from "../../actions/index";
+import { minusSeconds, changeStartButton } from "../../actions/index";
 import styles from "./styles";
 import { getRemaining } from "./func";
 
@@ -19,7 +15,6 @@ class Time extends Component {
       clearInterval(this.interval);
       this.interval = null;
       dispatch(changeStartButton("start"));
-      dispatch(setRemainingSeconds(20));
     } else if (buttonStatus === "stop" && prevProp.buttonStatus === "start") {
       this.interval = setInterval(() => {
         this.start();
