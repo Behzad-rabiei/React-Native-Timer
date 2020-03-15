@@ -31,7 +31,7 @@ class Time extends Component {
       clearInterval(this.interval);
       this.interval = null;
       dispatch(changeStartButton("start"));
-    } else if (buttonStatus === "stop") {
+    } else if (buttonStatus === "cancel") {
       this.interval = setInterval(() => {
         this.start();
       }, 985);

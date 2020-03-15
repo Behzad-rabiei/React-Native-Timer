@@ -1,4 +1,5 @@
 import styles from "./styles";
-import Button from "./Button";
+import Start from "./start";
+import Pause from "./pause";
 
-export { styles, Button };
+export { styles, Pause, Start };

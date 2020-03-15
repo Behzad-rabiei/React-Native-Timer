@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { TouchableOpacity, Text, View } from "react-native";
+import { TouchableOpacity, Text } from "react-native";
 import PropTypes from "prop-types";
 import styles from "./styles";
 import { changeStartButton, setRemainingSeconds } from "../../actions/index";
@@ -14,36 +14,38 @@ class Button extends Component {
     buttonStatus: PropTypes.string
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      buttonText: "Start",
+      style: styles.buttonStart
+    };
+  }
+
   handlePress = () => {
     const { dispatch, buttonStatus } = this.props;
     if (buttonStatus === "start") {
-      dispatch(changeStartButton("stop"));
+      this.setState({
+        buttonText: "Cancel",
+        style: styles.buttonCancel
+      });
+      dispatch(changeStartButton("cancel"));
       dispatch(setRemainingSeconds());
-    } else if (buttonStatus === "stop") {
+    } else {
+      this.setState({
+        buttonText: "Start",
+        style: styles.buttonStart
+      });
       dispatch(changeStartButton("start"));
     }
   };
 
   render() {
-    const { buttonStatus } = this.props;
+    const { buttonText, style } = this.state;
     return (
-      <View>
-        {buttonStatus === "start" ? (
-          <TouchableOpacity
-            style={styles.buttonStart}
-            onPress={this.handlePress}
-          >
-            <Text style={styles.textStart}>Start</Text>
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity
-            style={[styles.buttonStart, styles.buttonStop]}
-            onPress={this.handlePress}
-          >
-            <Text style={styles.textStop}>Stop</Text>
-          </TouchableOpacity>
-        )}
-      </View>
+      <TouchableOpacity style={style} onPress={this.handlePress}>
+        <Text style={styles.textStart}>{buttonText}</Text>
+      </TouchableOpacity>
     );
   }
 }
