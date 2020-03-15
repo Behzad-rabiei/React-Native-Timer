@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { TouchableOpacity, Text, View } from "react-native";
 import PropTypes from "prop-types";
 import styles from "./styles";
-import { changeStartButton } from "../../actions/index";
+import { changeStartButton, setRemainingSeconds } from "../../actions/index";
 
 class Button extends Component {
   // eslint-disable-next-line react/static-property-placement
@@ -18,6 +18,7 @@ class Button extends Component {
     const { dispatch, buttonStatus } = this.props;
     if (buttonStatus === "start") {
       dispatch(changeStartButton("stop"));
+      dispatch(setRemainingSeconds());
     } else if (buttonStatus === "stop") {
       dispatch(changeStartButton("start"));
     }

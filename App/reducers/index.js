@@ -2,13 +2,15 @@ import {
   CHANGE_BUTTON_STATUS,
   MINUS_SECONDS,
   GET_SECONDS,
-  GET_MINUTES
+  GET_MINUTES,
+  SET_REMAINING_SECONDS
 } from "../actions/actionsType";
 
 const initalState = {
   buttonStatus: "start",
-  remainingSeconds: 10,
-  remainingMinutes: 10
+  Seconds: 10,
+  Minutes: 10,
+  remainingSeconds: 10
 };
 
 const rootReducer = (state = initalState, actions) => {
@@ -28,13 +30,19 @@ const rootReducer = (state = initalState, actions) => {
     case GET_MINUTES: {
       return {
         ...state,
-        remainingMinutes: actions.value
+        Minutes: actions.value
       };
     }
     case GET_SECONDS: {
       return {
         ...state,
-        remainingSeconds: actions.value
+        Seconds: actions.value
+      };
+    }
+    case SET_REMAINING_SECONDS: {
+      return {
+        ...state,
+        remainingSeconds: state.Seconds + state.Minutes * 60
       };
     }
     default:

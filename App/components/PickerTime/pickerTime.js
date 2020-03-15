@@ -2,17 +2,34 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { View, Picker, Text } from "react-native";
 import { AVAILABLE_ITEMS } from "./func";
+import { getMinutes, getSeconds } from "../../actions/index";
 import styles from "./styles";
 
 class PickerTime extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      min: "",
+      sec: ""
+    };
+  }
+
   render() {
+    const { min, sec } = this.state;
+    const { dispatch } = this.props;
     return (
       <View style={styles.container}>
         <Picker
           style={styles.picker}
           itemStyle={styles.pickerItem}
-          selectedValue="3"
-          onValueChange={item => {}}
+          selectedValue={min}
+          onValueChange={item => {
+            const minutes = parseInt(item, 10);
+            dispatch(getMinutes(minutes));
+            this.setState({
+              min: item
+            });
+          }}
         >
           {AVAILABLE_ITEMS.map(value => (
             <Picker.Item key={value} label={value} value={value} />
@@ -22,8 +39,14 @@ class PickerTime extends Component {
         <Picker
           style={styles.picker}
           itemStyle={styles.pickerItem}
-          selectedValue="3"
-          onValueChange={item => {}}
+          selectedValue={sec}
+          onValueChange={item => {
+            const seconds = parseInt(item, 10);
+            dispatch(getSeconds(seconds));
+            this.setState({
+              sec: item
+            });
+          }}
         >
           {AVAILABLE_ITEMS.map(value => (
             <Picker.Item key={value} label={value} value={value} />

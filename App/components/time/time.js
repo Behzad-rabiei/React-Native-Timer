@@ -9,19 +9,32 @@ class Time extends Component {
   interval = null;
 
   //  I try another ways for doing minusSeconds and at the I do this way but I think there is a better way for doing that
-  componentDidUpdate(prevProp) {
+  // componentDidUpdate(prevProp) {
+  //   const { buttonStatus, dispatch, remainingSeconds } = this.props;
+  //   if (remainingSeconds === 0 && buttonStatus === "stop") {
+  //     clearInterval(this.interval);
+  //     this.interval = null;
+  //     dispatch(changeStartButton("start"));
+  //   } else if (buttonStatus === "stop" && prevProp.buttonStatus === "start") {
+  //     this.interval = setInterval(() => {
+  //       this.start();
+  //     }, 985);
+  //   } else if (buttonStatus === "start" && prevProp.buttonStatus === "stop") {
+  //     clearInterval(this.interval);
+  //     this.interval = null;
+  //   }
+  // }
+
+  componentDidMount() {
     const { buttonStatus, dispatch, remainingSeconds } = this.props;
-    if (remainingSeconds === 0 && buttonStatus === "stop") {
+    if (remainingSeconds === 0) {
       clearInterval(this.interval);
       this.interval = null;
       dispatch(changeStartButton("start"));
-    } else if (buttonStatus === "stop" && prevProp.buttonStatus === "start") {
+    } else if (buttonStatus === "stop") {
       this.interval = setInterval(() => {
         this.start();
       }, 985);
-    } else if (buttonStatus === "start" && prevProp.buttonStatus === "stop") {
-      clearInterval(this.interval);
-      this.interval = null;
     }
   }
 
@@ -39,8 +52,8 @@ class Time extends Component {
 
   render() {
     const { remainingSeconds } = this.props;
-    const { secondes, minutes } = getRemaining(remainingSeconds);
-    const time = `${minutes}:${secondes}`;
+    const { minutes, seconds } = getRemaining(remainingSeconds);
+    const time = `${minutes}:${seconds}`;
     return <Text style={styles.text}>{time}</Text>;
   }
 }
