@@ -21,12 +21,30 @@ class Time extends Component {
     }
   }
 
-  componentDidUpdate() {
-    const { StartButtonStatus, dispatch, remainingSeconds } = this.props;
+  componentDidUpdate(prevProp) {
+    const {
+      StartButtonStatus,
+      dispatch,
+      remainingSeconds,
+      PauseButtonStatus
+    } = this.props;
     if (remainingSeconds === 0 && StartButtonStatus === "cancel") {
       clearInterval(this.interval);
       this.interval = null;
       dispatch(changeStartButtonStatus("start"));
+    } else if (
+      PauseButtonStatus === "pause" &&
+      prevProp.PauseButtonStatus === "resume"
+    ) {
+      this.interval = setInterval(() => {
+        this.start();
+      }, 985);
+    } else if (
+      PauseButtonStatus === "resume" &&
+      prevProp.PauseButtonStatus === "pause"
+    ) {
+      clearInterval(this.interval);
+      this.interval = null;
     }
   }
 
@@ -50,9 +68,10 @@ class Time extends Component {
 }
 
 const mapStateToProps = state => {
-  const { StartButtonStatus, remainingSeconds } = state;
+  const { StartButtonStatus, remainingSeconds, PauseButtonStatus } = state;
   return {
     StartButtonStatus,
+    PauseButtonStatus,
     remainingSeconds
   };
 };
