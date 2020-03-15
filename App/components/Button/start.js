@@ -4,7 +4,9 @@ import { TouchableOpacity, Text } from "react-native";
 import styles from "./styles";
 import {
   changeStartButtonStatus,
-  setRemainingSeconds
+  setRemainingSeconds,
+  getMinutes,
+  getSeconds
 } from "../../actions/index";
 
 class Button extends Component {
@@ -17,6 +19,22 @@ class Button extends Component {
     };
   }
 
+  componentDidUpdate(prevProp) {
+    const { StartButtonStatus } = this.props;
+
+    if (
+      StartButtonStatus === "start" &&
+      prevProp.StartButtonStatus === "cancel"
+    ) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        buttonText: "Start",
+        buttonStyle: styles.buttonStart,
+        textStyle: styles.textStart
+      });
+    }
+  }
+
   handlePress = () => {
     const { dispatch, StartButtonStatus } = this.props;
     if (StartButtonStatus === "start") {
@@ -27,13 +45,15 @@ class Button extends Component {
       });
       dispatch(changeStartButtonStatus("cancel"));
       dispatch(setRemainingSeconds());
-    } else {
+    } else if (StartButtonStatus === "cancel") {
       this.setState({
         buttonText: "Start",
         buttonStyle: styles.buttonStart,
         textStyle: styles.textStart
       });
       dispatch(changeStartButtonStatus("start"));
+      dispatch(getSeconds(0));
+      dispatch(getMinutes(0));
     }
   };
 
@@ -48,9 +68,11 @@ class Button extends Component {
 }
 
 const mapStateToProps = state => {
-  const { StartButtonStatus } = state;
+  const { StartButtonStatus, Minutes, Seconds } = state;
   return {
-    StartButtonStatus
+    StartButtonStatus,
+    Minutes,
+    Seconds
   };
 };
 export default connect(mapStateToProps)(Button);

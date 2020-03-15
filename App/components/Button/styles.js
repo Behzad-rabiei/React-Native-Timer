@@ -37,6 +37,16 @@ const style = EStyleSheet.create({
     alignItems: "center", // horizontal
     marginHorizontal: 10
   },
+  buttonResume: {
+    borderWidth: 8,
+    width: screen.width / 2.5,
+    height: screen.width / 2.5,
+    borderRadius: screen.width / 2.5,
+    borderColor: "$orange",
+    justifyContent: "center", // vertical
+    alignItems: "center", // horizontal
+    marginHorizontal: 10
+  },
   textStart: {
     fontSize: 45,
     color: "$white"

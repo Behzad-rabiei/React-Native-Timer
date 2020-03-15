@@ -1,10 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { StatusBar } from "react-native";
+import { StatusBar, View } from "react-native";
+import EStyleSheet from "react-native-extended-stylesheet";
+
 import { Container } from "../components/Container";
 import { PickerTime } from "../components/PickerTime";
 import { Start, Pause } from "../components/Button";
 import { Time } from "../components/Time";
+
+const styles = EStyleSheet.create({
+  view: {
+    flexDirection: "row",
+    alignItems: "center"
+  }
+});
 
 class Home extends Component {
   render() {
@@ -14,8 +23,10 @@ class Home extends Component {
       <Container>
         <StatusBar barStyle="light-content" />
         {StartButtonStatus === "start" ? <PickerTime /> : <Time />}
-        <Start />
-        {StartButtonStatus === "cancel" ? <Pause /> : null}
+        <View style={styles.view}>
+          <Start />
+          {StartButtonStatus === "cancel" ? <Pause /> : null}
+        </View>
       </Container>
     );
   }
