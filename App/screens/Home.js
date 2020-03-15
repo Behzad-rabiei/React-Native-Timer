@@ -8,23 +8,23 @@ import { Time } from "../components/Time";
 
 class Home extends Component {
   render() {
-    const { buttonStatus } = this.props;
+    const { StartButtonStatus } = this.props;
 
     return (
       <Container>
         <StatusBar barStyle="light-content" />
-        {buttonStatus === "Start" ? <PickerTime /> : <Time />}
+        {StartButtonStatus === "start" ? <PickerTime /> : <Time />}
         <Start />
-        {buttonStatus === "cancel" ? <Pause /> : null}
+        {StartButtonStatus === "cancel" ? <Pause /> : null}
       </Container>
     );
   }
 }
 
 const mapStateToProps = state => {
-  const { buttonStatus } = state;
+  const { StartButtonStatus } = state;
   return {
-    buttonStatus
+    StartButtonStatus
   };
 };
 

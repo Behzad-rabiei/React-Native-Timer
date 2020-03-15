@@ -41,7 +41,15 @@ const style = EStyleSheet.create({
     fontSize: 45,
     color: "$white"
   },
+  textCancel: {
+    fontSize: 30,
+    color: "$white"
+  },
   textPause: {
+    fontSize: 30,
+    color: "$white"
+  },
+  textResume: {
     fontSize: 30,
     color: "$white"
   }

@@ -1,59 +1,56 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { TouchableOpacity, Text } from "react-native";
-import PropTypes from "prop-types";
 import styles from "./styles";
-import { changeStartButton, setRemainingSeconds } from "../../actions/index";
+import {
+  changeStartButtonStatus,
+  setRemainingSeconds
+} from "../../actions/index";
 
 class Button extends Component {
-  // eslint-disable-next-line react/static-property-placement
-  static propTypes = {
-    // eslint-disable-next-line react/require-default-props
-    dispatch: PropTypes.func,
-    // eslint-disable-next-line react/require-default-props
-    buttonStatus: PropTypes.string
-  };
-
   constructor(props) {
     super(props);
     this.state = {
       buttonText: "Start",
-      style: styles.buttonStart
+      buttonStyle: styles.buttonStart,
+      textStyle: styles.textStart
     };
   }
 
   handlePress = () => {
-    const { dispatch, buttonStatus } = this.props;
-    if (buttonStatus === "start") {
+    const { dispatch, StartButtonStatus } = this.props;
+    if (StartButtonStatus === "start") {
       this.setState({
         buttonText: "Cancel",
-        style: styles.buttonCancel
+        buttonStyle: styles.buttonCancel,
+        textStyle: styles.textCancel
       });
-      dispatch(changeStartButton("cancel"));
+      dispatch(changeStartButtonStatus("cancel"));
       dispatch(setRemainingSeconds());
     } else {
       this.setState({
         buttonText: "Start",
-        style: styles.buttonStart
+        buttonStyle: styles.buttonStart,
+        textStyle: styles.textStart
       });
-      dispatch(changeStartButton("start"));
+      dispatch(changeStartButtonStatus("start"));
     }
   };
 
   render() {
-    const { buttonText, style } = this.state;
+    const { buttonText, buttonStyle, textStyle } = this.state;
     return (
-      <TouchableOpacity style={style} onPress={this.handlePress}>
-        <Text style={styles.textStart}>{buttonText}</Text>
+      <TouchableOpacity style={buttonStyle} onPress={this.handlePress}>
+        <Text style={textStyle}>{buttonText}</Text>
       </TouchableOpacity>
     );
   }
 }
 
 const mapStateToProps = state => {
-  const { buttonStatus } = state;
+  const { StartButtonStatus } = state;
   return {
-    buttonStatus
+    StartButtonStatus
   };
 };
 export default connect(mapStateToProps)(Button);

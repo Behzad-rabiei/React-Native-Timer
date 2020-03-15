@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Text } from "react-native";
-import { minusSeconds, changeStartButton } from "../../actions/index";
+import { minusSeconds, changeStartButtonStatus } from "../../actions/index";
 import styles from "./styles";
 import { getRemaining } from "./func";
 
@@ -26,12 +26,12 @@ class Time extends Component {
   // }
 
   componentDidMount() {
-    const { buttonStatus, dispatch, remainingSeconds } = this.props;
+    const { StartButtonStatus, dispatch, remainingSeconds } = this.props;
     if (remainingSeconds === 0) {
       clearInterval(this.interval);
       this.interval = null;
-      dispatch(changeStartButton("start"));
-    } else if (buttonStatus === "cancel") {
+      dispatch(changeStartButtonStatus("start"));
+    } else if (StartButtonStatus === "cancel") {
       this.interval = setInterval(() => {
         this.start();
       }, 985);
@@ -46,7 +46,6 @@ class Time extends Component {
 
   start = () => {
     const { dispatch } = this.props;
-    console.log("minus");
     dispatch(minusSeconds());
   };
 
@@ -59,9 +58,9 @@ class Time extends Component {
 }
 
 const mapStateToProps = state => {
-  const { buttonStatus, remainingSeconds } = state;
+  const { StartButtonStatus, remainingSeconds } = state;
   return {
-    buttonStatus,
+    StartButtonStatus,
     remainingSeconds
   };
 };

@@ -1,14 +1,14 @@
 import {
-  CHANGE_BUTTON_STATUS,
+  CHANGE_START_BUTTON_STATUS,
   MINUS_SECONDS,
   GET_MINUTES,
   GET_SECONDS,
   SET_REMAINING_SECONDS
 } from "./actionsType";
 
-export const changeStartButton = status => {
+export const changeStartButtonStatus = status => {
   return {
-    type: CHANGE_BUTTON_STATUS,
+    type: CHANGE_START_BUTTON_STATUS,
     value: status
   };
 };

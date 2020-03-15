@@ -1,5 +1,5 @@
 import {
-  CHANGE_BUTTON_STATUS,
+  CHANGE_START_BUTTON_STATUS,
   MINUS_SECONDS,
   GET_SECONDS,
   GET_MINUTES,
@@ -7,18 +7,18 @@ import {
 } from "../actions/actionsType";
 
 const initalState = {
-  buttonStatus: "start",
-  Seconds: 10,
-  Minutes: 10,
-  remainingSeconds: 10
+  StartButtonStatus: "start",
+  Seconds: 0,
+  Minutes: 0,
+  remainingSeconds: 0
 };
 
 const rootReducer = (state = initalState, actions) => {
   switch (actions.type) {
-    case CHANGE_BUTTON_STATUS: {
+    case CHANGE_START_BUTTON_STATUS: {
       return {
         ...state,
-        buttonStatus: actions.value
+        StartButtonStatus: actions.value
       };
     }
     case MINUS_SECONDS: {
