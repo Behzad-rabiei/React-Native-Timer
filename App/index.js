@@ -8,7 +8,9 @@ EStyleSheet.build({
   $black: "#000000",
   $orange: "#E49520",
   $white: "#E9F0F3",
-  $red: "#FF1100"
+  $red: "#FF1100",
+  $dodgerblue: "#1e90ff",
+  $orangered: "#ff4500"
 });
 
 export default () => (

@@ -13,7 +13,7 @@ const style = EStyleSheet.create({
     width: screen.width / 2,
     height: screen.width / 2,
     borderRadius: screen.width / 2,
-    borderColor: "$orange",
+    borderColor: "$dodgerblue",
     justifyContent: "center", // vertical
     alignItems: "center" // horizontal
   },
@@ -22,7 +22,7 @@ const style = EStyleSheet.create({
     width: screen.width / 2.5,
     height: screen.width / 2.5,
     borderRadius: screen.width / 2.5,
-    borderColor: "$orange",
+    borderColor: "$orangered",
     justifyContent: "center", // vertical
     alignItems: "center", // horizontal
     marginHorizontal: 10
@@ -42,7 +42,7 @@ const style = EStyleSheet.create({
     width: screen.width / 2.5,
     height: screen.width / 2.5,
     borderRadius: screen.width / 2.5,
-    borderColor: "$orange",
+    borderColor: "$dodgerblue",
     justifyContent: "center", // vertical
     alignItems: "center", // horizontal
     marginHorizontal: 10
