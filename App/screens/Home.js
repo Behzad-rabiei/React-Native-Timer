@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import { StatusBar, View } from "react-native";
 import EStyleSheet from "react-native-extended-stylesheet";
 
-import { Container } from "../components/Container";
+import { Container } from "../components/container";
 import { PickerTime } from "../components/PickerTime";
 import { Start, Pause } from "../components/Button";
-import { Time } from "../components/Time";
+import { Time } from "../components/time";
 
 const styles = EStyleSheet.create({
   view: {
