@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { StatusBar, View } from "react-native";
 import EStyleSheet from "react-native-extended-stylesheet";
-
 import { Container } from "../components/container";
 import { PickerTime } from "../components/PickerTime";
 import { Start, Pause } from "../components/Button";

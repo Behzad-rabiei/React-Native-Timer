@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Audio } from "expo-av";
 import { connect } from "react-redux";
 import { Text } from "react-native";
 import { minusSeconds, changeStartButtonStatus } from "../../actions/index";
@@ -6,6 +7,22 @@ import styles from "./styles";
 import { getRemaining } from "./func";
 
 class Time extends Component {
+  async audioSetup() {
+    console.log("hiiiiiiii");
+    Audio.setAudioModeAsync({
+      playsInSilentModeIOS: true,
+      staysActiveInBackground: true
+    });
+    const soundObject = new Audio.Sound();
+    const source = require("../../../assets/sounds/WAV189.wav");
+    try {
+      await soundObject.loadAsync(source);
+      await soundObject.playAsync();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   interval = null;
 
   componentDidMount() {
@@ -32,6 +49,7 @@ class Time extends Component {
       clearInterval(this.interval);
       this.interval = null;
       dispatch(changeStartButtonStatus("start"));
+      this.audioSetup();
     } else if (
       PauseButtonStatus === "pause" &&
       prevProp.PauseButtonStatus === "resume"
