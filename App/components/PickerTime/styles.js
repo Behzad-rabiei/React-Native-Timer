@@ -1,3 +1,4 @@
+import { Platform } from "react-native";
 import EStyleSheet from "react-native-extended-stylesheet";
 
 const style = EStyleSheet.create({
@@ -7,11 +8,21 @@ const style = EStyleSheet.create({
   },
   picker: {
     width: 50,
-    marginHorizontal: 10
+    marginHorizontal: 10,
+    ...Platform.select({
+      android: {
+        color: "$white",
+        backgroundColor: "$black",
+        margin: 30
+      }
+    })
   },
   pickerItem: {
     fontSize: 30,
-    color: "$white"
+    color: "$white",
+    ...Platform.select({
+      android: {}
+    })
   }
 });
 

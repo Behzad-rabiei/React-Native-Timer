@@ -30,6 +30,7 @@ class PickerTime extends Component {
               min: item
             });
           }}
+          mode="dropdown"
         >
           {AVAILABLE_ITEMS.map(value => (
             <Picker.Item key={value} label={value} value={value} />
@@ -47,6 +48,7 @@ class PickerTime extends Component {
               sec: item
             });
           }}
+          mode="dropdown"
         >
           {AVAILABLE_ITEMS.map(value => (
             <Picker.Item key={value} label={value} value={value} />
