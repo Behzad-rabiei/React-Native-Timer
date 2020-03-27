@@ -7,11 +7,11 @@ import styles from "./styles";
 import { getRemaining } from "./func";
 
 class Time extends Component {
-  async audioSetup() {
-    console.log("hiiiiiiii");
+  static async audioSetup() {
     Audio.setAudioModeAsync({
       playsInSilentModeIOS: true,
-      staysActiveInBackground: true
+      staysActiveInBackground: true,
+      interruptionModeIOS: "INTERRUPTION_MODE_IOS_DO_NOT_MIX"
     });
     const soundObject = new Audio.Sound();
     const source = require("../../../assets/sounds/WAV189.wav");
