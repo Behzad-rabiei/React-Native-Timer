@@ -49,7 +49,7 @@ class Time extends Component {
       clearInterval(this.interval);
       this.interval = null;
       dispatch(changeStartButtonStatus("start"));
-      this.audioSetup();
+      // this.audioSetup();
     } else if (
       PauseButtonStatus === "pause" &&
       prevProp.PauseButtonStatus === "resume"
