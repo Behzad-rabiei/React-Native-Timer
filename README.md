@@ -2,8 +2,7 @@
 
 A simple cross platform (iOS and Android) React Native Calculator App.
 Thanks to Spencer Carli : https://learn.handlebarlabs.com
-![Demo Select](./assets/select.png)
-![Demo Count](./assets/countdown.png)
+![Image description](./assets/timer.gif)
 
 ## Installation
 
